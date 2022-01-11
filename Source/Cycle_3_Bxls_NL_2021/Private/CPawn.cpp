@@ -31,12 +31,7 @@ void ACPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-}
-
-UPawnMovementComponent* ACPawn::GetMovementComponent() const
-{
-
-	UE_LOG(LogTemp, Warning, TEXT("Get movementComponent class CPawn"));
-	return  FindComponentByClass<UPawnMovementComponent>();
+	//PlayerInputComponent->BindAxis("Forward/Backward", this,... );
 
 }
+

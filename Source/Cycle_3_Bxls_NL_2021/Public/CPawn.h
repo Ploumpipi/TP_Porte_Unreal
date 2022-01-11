@@ -28,5 +28,5 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	
-	virtual UPawnMovementComponent* GetMovementComponent() const override;
+	
 };
