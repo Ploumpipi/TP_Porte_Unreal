@@ -2,6 +2,7 @@
 
 
 #include "CPosition.h"
+#include "Engine/Engine.h"
 
 // Sets default values for this component's properties
 UCPosition::UCPosition()
@@ -19,7 +20,12 @@ void UCPosition::BeginPlay()
 {
 	Super::BeginPlay();
 
+	UE_LOG(LogTemp, Warning, TEXT("Object Name : %s"), *getPawnName());
 	// ...
+	if (GEngine != nullptr) {
+		GEngine->AddOnScreenDebugMessage(1, 10, FColor::Blue, getPawnName());
+	}
+
 	
 }
 
@@ -29,6 +35,25 @@ void UCPosition::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompo
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	UE_LOG(LogTemp, Warning, TEXT("Object Position : %s"), *getPawnPosition().ToString());
+	
+	if (GEngine != nullptr) {
+		GEngine->AddOnScreenDebugMessage(1, 10, FColor::Blue, getPawnPosition().ToString());
+	}
+	
+
 	// ...
+}
+
+FString UCPosition::getPawnName() const
+{
+	FString strObjectName=GetOwner()->GetName();
+	return strObjectName;
+}
+
+FVector UCPosition::getPawnPosition() const
+{
+	FVector vObjectPosition = GetOwner()->GetActorTransform().GetLocation();
+	return vObjectPosition;
 }
 
